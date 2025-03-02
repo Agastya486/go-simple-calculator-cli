@@ -54,7 +54,7 @@ func division(num1, num2 int) (int, error) {
 	return num1 / num2, nil
 }
 
-func modulus(num1, num2 int) int {
+func modulo(num1, num2 int) int {
 	fmt.Print("Type the first number: ")
 	fmt.Scan(&num1)
 
@@ -70,7 +70,7 @@ func main() {
 	var num2 int
 
 	for {
-		fmt.Println("\n== Calculator == \n1.Addition \n2.Subtraction \n3.Multiplication \n4.Division \n5.Modulus \n6.End")
+		fmt.Println("\n== Calculator == \n1.Addition \n2.Subtraction \n3.Multiplication \n4.Division \n5.Modulo \n6.End")
 		fmt.Print("Choice : ")
 		fmt.Scan(&choice)
 
@@ -92,7 +92,7 @@ func main() {
 			}
 			fmt.Println("Result is: " + strconv.Itoa(result))
 		case 5:
-			result := modulus(num1, num2)
+			result := modulo(num1, num2)
 			fmt.Println("Result is: " + strconv.Itoa(result))
 		}
 		if choice == 6 {
