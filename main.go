@@ -1,11 +1,12 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"strconv"
 )
 
-func addition(num1 int, num2 int) int {
+func addition(num1, num2 int) int {
 	fmt.Print("Type the first number: ")
 	fmt.Scan(&num1)
 
@@ -15,7 +16,7 @@ func addition(num1 int, num2 int) int {
 	return num1 + num2
 }
 
-func subtraction(num1 int, num2 int) int {
+func subtraction(num1, num2 int) int {
 	fmt.Print("Type the first number: ")
 	fmt.Scan(&num1)
 
@@ -25,7 +26,7 @@ func subtraction(num1 int, num2 int) int {
 	return num1 - num2
 }
 
-func multiplication(num1 int, num2 int) int {
+func multiplication(num1, num2 int) int {
 	fmt.Print("Type the first number: ")
 	fmt.Scan(&num1)
 
@@ -35,17 +36,25 @@ func multiplication(num1 int, num2 int) int {
 	return num1 * num2
 }
 
-func division(num1 int, num2 int) int {
+func division(num1, num2 int) (int, error) {
 	fmt.Print("Type the first number: ")
 	fmt.Scan(&num1)
+
+	if num1 == 0 {
+		return 0, errors.New("Cannot divide by zero")
+	}
 
 	fmt.Print("Type the second number: ")
 	fmt.Scan(&num2)
 
-	return num1 / num2
+	if num2 == 0 {
+		return 0, errors.New("Cannot divide by zero")
+	}
+
+	return num1 / num2, nil
 }
 
-func modulus(num1 int, num2 int) int {
+func modulus(num1, num2 int) int {
 	fmt.Print("Type the first number: ")
 	fmt.Scan(&num1)
 
@@ -76,7 +85,11 @@ func main() {
 			result := multiplication(num1, num2)
 			fmt.Println("Result is: " + strconv.Itoa(result))
 		case 4:
-			result := division(num1, num2)
+			result, err := division(num1, num2)
+			if err != nil {
+				fmt.Println("Error:", err)
+				return
+			}
 			fmt.Println("Result is: " + strconv.Itoa(result))
 		case 5:
 			result := modulus(num1, num2)
